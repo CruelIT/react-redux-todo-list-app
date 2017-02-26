@@ -7,6 +7,7 @@ const StyledInput = styled.input`
   outline: none;
   padding: 16px;
   box-sizing: border-box;
+  font-size: 1.5rem;
 `;
 
 const Input = (props) => (

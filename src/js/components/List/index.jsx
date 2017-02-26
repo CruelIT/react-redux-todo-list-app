@@ -2,7 +2,11 @@ import React, {PropTypes} from 'react';
 import styled from 'styled-components';
 import ToDoItem from '../ToDoItem';
 
-const Ul = styled.ul``;
+const Ul = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
 
 const List = (props) => (
   <Ul>

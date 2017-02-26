@@ -8,7 +8,9 @@ const Container = styled.div`
 `;
 
 const Header = styled.header``;
-const Main = styled.section``;
+const Main = styled.section`
+  border-top: 1px solid #e6e6e6;
+`;
 
 const AppLayout = (props) => (
   <Container>
