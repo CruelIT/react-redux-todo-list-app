@@ -1,7 +1,16 @@
 import React, {PropTypes} from 'react';
+import styled from 'styled-components';
+
+const StyledInput = styled.input`
+  width: 100%;
+  border: 0;
+  outline: none;
+  padding: 16px;
+  box-sizing: border-box;
+`;
 
 const Input = (props) => (
-  <input
+  <StyledInput
     placeholder="Please type"
     value={props.value}
     autoFocus

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Input from '../components/Input';
+import AppLayout from '../components/AppLayout';
 
 const ENTER_KEY = 13;
 
@@ -33,9 +34,9 @@ export default class AppContainer extends Component {
 
   render() {
     return (
-      <div>
-        <Input value={this.state.inputValue} handleChange={this.handleInputChange} handleKeyDown={this.handleInputKeyDown} />
-      </div>
+      <AppLayout
+        input={<Input value={this.state.inputValue} handleChange={this.handleInputChange} handleKeyDown={this.handleInputKeyDown} />}
+      />
     );
   }
 }
