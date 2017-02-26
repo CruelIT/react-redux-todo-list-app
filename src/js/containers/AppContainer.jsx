@@ -29,7 +29,7 @@ export default class AppContainer extends Component {
       todos.push({
         value: val
       });
-      this.setState({todos});
+      this.setState({todos, inputValue: ''});
     }
   };
 
