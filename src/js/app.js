@@ -1,3 +1,4 @@
 import React from 'react';
+import MainLayout from './components/MainLayout';
 
-export default () => (<p>Привет</p>);
+export default () => (<MainLayout />);
