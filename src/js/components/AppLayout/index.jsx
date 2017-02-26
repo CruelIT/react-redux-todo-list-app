@@ -7,14 +7,23 @@ const Container = styled.div`
   margin-bottom: 40px;
 `;
 
+const Header = styled.header``;
+const Main = styled.section``;
+
 const AppLayout = (props) => (
   <Container>
-    {props.input}
+    <Header>
+      {props.input}
+    </Header>
+    <Main>
+      {props.list}
+    </Main>
   </Container>
 );
 
 AppLayout.propTypes = {
-  input: PropTypes.element
+  input: PropTypes.element,
+  list: PropTypes.element
 };
 
 export default AppLayout;
