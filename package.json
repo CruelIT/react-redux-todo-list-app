@@ -2,7 +2,7 @@
   "name": "ToDo-List",
   "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "babel -d public src/index.js"
   },
   "author": "Danil Agafonov",
   "license": "ISC",
