@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const rimraf = require('rimraf');
 
 const config = {
     context: path.resolve(__dirname, 'src'),
@@ -20,6 +21,11 @@ const config = {
         ]
     },
     plugins: [
+        {
+            apply: (compiler) => {
+                rimraf.sync(compiler.options.output.path);
+            }
+        },
         new HtmlWebpackPlugin({template: 'index.html'})
     ]
 };
