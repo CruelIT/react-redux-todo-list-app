@@ -11,14 +11,15 @@ const Ul = styled.ul`
 const List = (props) => (
   <Ul>
     {props.todos.map((todo, i) => (
-      <ToDoItem {...todo} handleToggleComplete={() => { props.handleToggleComplete(i); }} key={i} />
+      <ToDoItem {...todo} handleToggleComplete={() => { props.handleToggleComplete(i); }} handleDelete={() => { props.handleDelete(i); }} key={i} />
     ))}
   </Ul>
 );
 
 List.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
-  handleToggleComplete: PropTypes.func.isRequired
+  handleToggleComplete: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired
 };
 
 export default List;

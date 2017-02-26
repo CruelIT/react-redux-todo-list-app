@@ -40,11 +40,17 @@ export default class AppContainer extends Component {
     this.setState({todos});
   };
 
+  handleDelete = (i) => {
+    let todos = this.state.todos;
+    todos.splice(i, 1);
+    this.setState({todos});
+  };
+
   render() {
     return (
       <AppLayout
         input={<Input value={this.state.inputValue} handleChange={this.handleInputChange} handleKeyDown={this.handleInputKeyDown} />}
-        list={<List todos={this.state.todos} handleToggleComplete={this.handleToggleComplete} />}
+        list={<List todos={this.state.todos} handleToggleComplete={this.handleToggleComplete} handleDelete={this.handleDelete} />}
       />
     );
   }
