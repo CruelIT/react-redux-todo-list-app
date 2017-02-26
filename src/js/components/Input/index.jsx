@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 
-const Input = props =>
+const Input = (props) => (
   <input
     placeholder="Please type"
     value={props.value}
@@ -8,7 +8,7 @@ const Input = props =>
     onChange={props.handleChange}
     onKeyDown={props.handleKeyDown}
   />
-;
+);
 
 Input.propTypes = {
   value: PropTypes.string.isRequired,
