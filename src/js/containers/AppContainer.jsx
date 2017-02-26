@@ -27,17 +27,24 @@ export default class AppContainer extends Component {
     if (val) {
       let todos = this.state.todos;
       todos.push({
-        value: val
+        value: val,
+        completed: false
       });
       this.setState({todos, inputValue: ''});
     }
+  };
+
+  handleToggleComplete = (i) => {
+    let todos = this.state.todos;
+    todos[i].completed = !todos[i].completed;
+    this.setState({todos});
   };
 
   render() {
     return (
       <AppLayout
         input={<Input value={this.state.inputValue} handleChange={this.handleInputChange} handleKeyDown={this.handleInputKeyDown} />}
-        list={<List todos={this.state.todos} />}
+        list={<List todos={this.state.todos} handleToggleComplete={this.handleToggleComplete} />}
       />
     );
   }
