@@ -1,4 +1,4 @@
-import React, { PropType } from 'react';
+import React, {PropType} from 'react';
 
 const Input = props =>
   <input
@@ -13,7 +13,7 @@ const Input = props =>
 Input.propTypes = {
   value: PropType.string.isRequired,
   handleChange: PropType.func.isRequired,
-  handleKeyDown: PropType.func.isRequired,
+  handleKeyDown: PropType.func.isRequired
 };
 
 export default Input;

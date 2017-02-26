@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { AppContainer } from 'react-hot-loader';
+import {AppContainer} from 'react-hot-loader';
 // AppContainer is a necessary wrapper component for HMR
 
 import 'normalize.css/normalize.css';
@@ -16,7 +16,7 @@ const render = (Component) => {
     <AppContainer>
       <Component />
     </AppContainer>,
-    rootEl,
+    rootEl
   );
 };
 
