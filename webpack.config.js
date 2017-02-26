@@ -23,7 +23,12 @@ const config = {
     plugins: [
         new webpack.NoEmitOnErrorsPlugin(),
         new HtmlWebpackPlugin({template: 'index.html'})
-    ]
+    ],
+    devServer: {
+        contentBase: path.join(__dirname, "public"),
+        compress: true,
+        port: 8089
+    }
 };
 
 module.exports = config;
