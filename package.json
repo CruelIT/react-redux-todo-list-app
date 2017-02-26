@@ -1,0 +1,9 @@
+{
+  "name": "ToDo-List",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "author": "Danil Agafonov",
+  "license": "ISC"
+}
