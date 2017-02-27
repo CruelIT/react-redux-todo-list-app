@@ -1,6 +1,8 @@
 import React, {PropTypes} from 'react';
 import styled from 'styled-components';
 
+import ToDoFilters from '../ToDoFilters';
+
 const StyledFooter = styled.footer`
   color: #777;
   padding: 10px 15px;
@@ -52,6 +54,7 @@ const ClearButton = styled.button`
 const ToDoFooter = (props) => (
   <StyledFooter>
     <Count>{props.count} item left</Count>
+    <ToDoFilters handleSetFilter={props.handleSetFilter} filter={props.filter} />
     {(() => {
       if (props.showClearButton) {
         return <ClearButton onClick={props.handleClearCompleted}>Clear completed</ClearButton>;
@@ -63,7 +66,9 @@ const ToDoFooter = (props) => (
 ToDoFooter.propTypes = {
   count: PropTypes.number.isRequired,
   showClearButton: PropTypes.bool.isRequired,
-  handleClearCompleted: PropTypes.func.isRequired
+  handleClearCompleted: PropTypes.func.isRequired,
+  handleSetFilter: PropTypes.func.isRequired,
+  filter: PropTypes.bool
 };
 
 export default ToDoFooter;

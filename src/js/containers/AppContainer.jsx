@@ -9,7 +9,8 @@ const ENTER_KEY = 13;
 export default class AppContainer extends Component {
   state = {
     todos: [],
-    inputValue: ''
+    inputValue: '',
+    filter: null
   };
 
   handleInputChange = (event) => {
@@ -28,6 +29,7 @@ export default class AppContainer extends Component {
     if (val) {
       let todos = this.state.todos;
       todos.push({
+        key: this.state.todos.length,
         value: val,
         completed: false
       });
@@ -35,15 +37,17 @@ export default class AppContainer extends Component {
     }
   };
 
-  handleToggleComplete = (i) => {
+  handleToggleComplete = (key) => {
     let todos = this.state.todos;
-    todos[i].completed = !todos[i].completed;
+    let index = todos.findIndex((todo) => key === todo.key);
+    todos[index].completed = !todos[index].completed;
     this.setState({todos});
   };
 
-  handleDelete = (i) => {
+  handleDelete = (key) => {
     let todos = this.state.todos;
-    todos.splice(i, 1);
+    let index = todos.findIndex((todo) => key === todo.key);
+    todos.splice(index, 1);
     this.setState({todos});
   };
 
@@ -52,14 +56,19 @@ export default class AppContainer extends Component {
     this.setState({todos});
   };
 
+  handleSetFilter = (filter) => {
+    this.setState({filter});
+  };
+
   render() {
     const uncompletedCount = this.state.todos.filter((todo) => !todo.completed).length;
+    const filteredTodos = this.state.todos.filter((todo) => this.state.filter !== null ? (todo.completed === this.state.filter) : true);
 
     return (
       <AppLayout
         input={<ToDoInput value={this.state.inputValue} handleChange={this.handleInputChange} handleKeyDown={this.handleInputKeyDown} />}
-        list={<ToDoList todos={this.state.todos} handleToggleComplete={this.handleToggleComplete} handleDelete={this.handleDelete} />}
-        footer={this.state.todos.length > 0 ? <ToDoFooter count={uncompletedCount} showClearButton={uncompletedCount < this.state.todos.length} handleClearCompleted={this.handleClearCompleted} /> : null}
+        list={<ToDoList todos={filteredTodos} handleToggleComplete={this.handleToggleComplete} handleDelete={this.handleDelete} />}
+        footer={this.state.todos.length > 0 ? <ToDoFooter count={uncompletedCount} showClearButton={uncompletedCount < this.state.todos.length} handleClearCompleted={this.handleClearCompleted} handleSetFilter={this.handleSetFilter} filter={this.state.filter} /> : null}
       />
     );
   }

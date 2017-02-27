@@ -10,8 +10,8 @@ const Ul = styled.ul`
 
 const ToDoList = (props) => (
   <Ul>
-    {props.todos.map((todo, i) => (
-      <ToDoItem {...todo} handleToggleComplete={() => { props.handleToggleComplete(i); }} handleDelete={() => { props.handleDelete(i); }} key={i} />
+    {props.todos.map((todo) => (
+      <ToDoItem {...todo} handleToggleComplete={() => { props.handleToggleComplete(todo.key); }} handleDelete={() => { props.handleDelete(todo.key); }} key={todo.key} />
     ))}
   </Ul>
 );
