@@ -20,12 +20,14 @@ const AppLayout = (props) => (
     <Main>
       {props.list}
     </Main>
+    {props.footer}
   </Container>
 );
 
 AppLayout.propTypes = {
-  input: PropTypes.element,
-  list: PropTypes.element
+  input: PropTypes.element.isRequired,
+  list: PropTypes.element.isRequired,
+  footer: PropTypes.element
 };
 
 export default AppLayout;

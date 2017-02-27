@@ -9,6 +9,10 @@ const Li = styled.li`
   &:hover button {
     display: block;
   }
+  
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 const CheckboxInput = styled.input`

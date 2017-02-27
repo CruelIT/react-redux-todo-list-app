@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ToDoInput from '../components/ToDoInput';
 import AppLayout from '../components/AppLayout';
 import ToDoList from '../components/ToDoList';
+import ToDoFooter from '../components/ToDoFooter';
 
 const ENTER_KEY = 13;
 
@@ -46,11 +47,19 @@ export default class AppContainer extends Component {
     this.setState({todos});
   };
 
+  handleClearCompleted = () => {
+    let todos = this.state.todos.filter((todo) => !todo.completed);
+    this.setState({todos});
+  };
+
   render() {
+    const uncompletedCount = this.state.todos.filter((todo) => !todo.completed).length;
+
     return (
       <AppLayout
         input={<ToDoInput value={this.state.inputValue} handleChange={this.handleInputChange} handleKeyDown={this.handleInputKeyDown} />}
         list={<ToDoList todos={this.state.todos} handleToggleComplete={this.handleToggleComplete} handleDelete={this.handleDelete} />}
+        footer={this.state.todos.length > 0 ? <ToDoFooter count={uncompletedCount} showClearButton={uncompletedCount < this.state.todos.length} handleClearCompleted={this.handleClearCompleted} /> : null}
       />
     );
   }
