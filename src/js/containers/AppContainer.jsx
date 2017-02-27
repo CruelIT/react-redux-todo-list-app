@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Input from '../components/Input';
+import ToDoInput from '../components/ToDoInput';
 import AppLayout from '../components/AppLayout';
-import List from '../components/List';
+import ToDoList from '../components/ToDoList';
 
 const ENTER_KEY = 13;
 
@@ -49,8 +49,8 @@ export default class AppContainer extends Component {
   render() {
     return (
       <AppLayout
-        input={<Input value={this.state.inputValue} handleChange={this.handleInputChange} handleKeyDown={this.handleInputKeyDown} />}
-        list={<List todos={this.state.todos} handleToggleComplete={this.handleToggleComplete} handleDelete={this.handleDelete} />}
+        input={<ToDoInput value={this.state.inputValue} handleChange={this.handleInputChange} handleKeyDown={this.handleInputKeyDown} />}
+        list={<ToDoList todos={this.state.todos} handleToggleComplete={this.handleToggleComplete} handleDelete={this.handleDelete} />}
       />
     );
   }

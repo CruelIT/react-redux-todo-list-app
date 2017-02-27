@@ -8,7 +8,7 @@ const Ul = styled.ul`
   padding: 0;
 `;
 
-const List = (props) => (
+const ToDoList = (props) => (
   <Ul>
     {props.todos.map((todo, i) => (
       <ToDoItem {...todo} handleToggleComplete={() => { props.handleToggleComplete(i); }} handleDelete={() => { props.handleDelete(i); }} key={i} />
@@ -16,10 +16,10 @@ const List = (props) => (
   </Ul>
 );
 
-List.propTypes = {
+ToDoList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleToggleComplete: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired
 };
 
-export default List;
+export default ToDoList;

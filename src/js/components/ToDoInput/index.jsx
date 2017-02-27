@@ -10,7 +10,7 @@ const StyledInput = styled.input`
   font-size: 1.5rem;
 `;
 
-const Input = (props) => (
+const ToDoInput = (props) => (
   <StyledInput
     placeholder="Please type"
     value={props.value}
@@ -20,10 +20,10 @@ const Input = (props) => (
   />
 );
 
-Input.propTypes = {
+ToDoInput.propTypes = {
   value: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleKeyDown: PropTypes.func.isRequired
 };
 
-export default Input;
+export default ToDoInput;
