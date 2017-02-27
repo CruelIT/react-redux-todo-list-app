@@ -9,7 +9,6 @@ const Footer = styled.footer`
 
 export default () => (
   <Footer>
-    <p>Double-click to edit a todo</p>
     <p>Created by Danil Agafonov, 2017</p>
   </Footer>
 );
