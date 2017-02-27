@@ -84,7 +84,7 @@ const Button = styled.button`
 const ToDoItem = (props) => {
   return (
     <Li>
-      <CheckboxInput type="checkbox" checked={props.completed} onClick={props.handleToggleComplete} />
+      <CheckboxInput type="checkbox" checked={props.completed} onChange={props.handleToggleComplete} />
       <Label className={props.completed ? 'completed' : ''}>{props.value}</Label>
       <Button onClick={props.handleDelete} />
     </Li>
