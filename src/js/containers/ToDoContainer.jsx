@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import ToDoInput from '../components/ToDoInput';
-import AppLayout from '../components/AppLayout';
+import ToDoLayout from '../components/ToDoLayout';
 import ToDoList from '../components/ToDoList';
 import ToDoFooter from '../components/ToDoFooter';
 
 const ENTER_KEY = 13;
 
-export default class AppContainer extends Component {
+export default class ToDoContainer extends Component {
   state = {
     todos: [],
     inputValue: '',
@@ -65,7 +65,7 @@ export default class AppContainer extends Component {
     const filteredTodos = this.state.todos.filter((todo) => this.state.filter !== null ? (todo.completed === this.state.filter) : true);
 
     return (
-      <AppLayout
+      <ToDoLayout
         input={<ToDoInput value={this.state.inputValue} handleChange={this.handleInputChange} handleKeyDown={this.handleInputKeyDown} />}
         list={<ToDoList todos={filteredTodos} handleToggleComplete={this.handleToggleComplete} handleDelete={this.handleDelete} />}
         footer={this.state.todos.length > 0 ? <ToDoFooter count={uncompletedCount} showClearButton={uncompletedCount < this.state.todos.length} handleClearCompleted={this.handleClearCompleted} handleSetFilter={this.handleSetFilter} filter={this.state.filter} /> : null}
