@@ -5,7 +5,7 @@ import ToDoLayout from '../components/ToDoLayout';
 import ToDoList from '../components/ToDoList';
 import ToDoFooter from '../components/ToDoFooter';
 
-import {toggleTodo, addTodo, setFilter} from '../actions';
+import {toggleTodo, addTodo, setFilter, deleteTodo, clearCompletedTodos} from '../actions';
 
 const ENTER_KEY = 13;
 
@@ -14,6 +14,8 @@ class ToDoContainer extends Component {
     addTodo: PropTypes.func.isRequired,
     toggleTodo: PropTypes.func.isRequired,
     setFilter: PropTypes.func.isRequired,
+    deleteTodo: PropTypes.func.isRequired,
+    clearCompletedTodos: PropTypes.func.isRequired,
 
     todos: PropTypes.arrayOf(PropTypes.object).isRequired,
     filter: PropTypes.bool,
@@ -44,24 +46,12 @@ class ToDoContainer extends Component {
     }
   };
 
-  handleDelete = (key) => {
-    /*let todos = this.state.todos;
-    let index = todos.findIndex((todo) => key === todo.key);
-    todos.splice(index, 1);
-    this.setState({todos});*/
-  };
-
-  handleClearCompleted = () => {
-    /*let todos = this.state.todos.filter((todo) => !todo.completed);
-    this.setState({todos});*/
-  };
-
   render() {
     return (
       <ToDoLayout
         input={<ToDoInput value={this.state.inputValue} handleChange={this.handleInputChange} handleKeyDown={this.handleInputKeyDown} />}
-        list={<ToDoList todos={this.props.todos} handleToggleComplete={this.props.toggleTodo} handleDelete={this.handleDelete} />}
-        footer={this.props.allCount > 0 ? <ToDoFooter count={this.props.activeCount} showClearButton={this.props.activeCount < this.props.allCount} handleClearCompleted={this.handleClearCompleted} handleSetFilter={this.props.setFilter} filter={this.props.filter} /> : null}
+        list={<ToDoList todos={this.props.todos} handleToggleComplete={this.props.toggleTodo} handleDelete={this.props.deleteTodo} />}
+        footer={this.props.allCount > 0 ? <ToDoFooter count={this.props.activeCount} showClearButton={this.props.activeCount < this.props.allCount} handleClearCompleted={this.props.clearCompletedTodos} handleSetFilter={this.props.setFilter} filter={this.props.filter} /> : null}
       />
     );
   }
@@ -77,6 +67,8 @@ export default connect(
   {
     toggleTodo,
     addTodo,
-    setFilter
+    setFilter,
+    deleteTodo,
+    clearCompletedTodos
   }
 )(ToDoContainer);

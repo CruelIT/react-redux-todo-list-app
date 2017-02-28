@@ -26,3 +26,18 @@ export const toggleTodo = (key) => {
     }
   }
 };
+
+export const deleteTodo = (key) => {
+  return {
+    type: 'DELETE_TODO',
+    payload: {
+      key
+    }
+  };
+};
+
+export const clearCompletedTodos = () => {
+  return {
+    type: 'CLEAR_COMPLETED_TODOS'
+  };
+};

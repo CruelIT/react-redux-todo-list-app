@@ -12,6 +12,10 @@ export default (state = [], action) => {
         }
         return Object.assign({}, todo, {completed: !todo.completed});
       });
+    case 'DELETE_TODO':
+      return state.filter((todo) => todo.key !== action.payload.key);
+    case 'CLEAR_COMPLETED_TODOS':
+      return state.filter((todo) => !todo.completed);
     default:
       return state;
   }
