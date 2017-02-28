@@ -1,6 +1,8 @@
+import * as ActionTypes from '../constants/action-types';
+
 export const addTodo = (text) => {
   return {
-    type: 'ADD_TODO',
+    type: ActionTypes.ADD_TODO,
     payload: {
       text
     }
@@ -9,7 +11,7 @@ export const addTodo = (text) => {
 
 export const setFilter = (filter) => {
   return {
-    type: 'SET_FILTER',
+    type: ActionTypes.SET_FILTER,
     payload: {
       value: filter
     }
@@ -18,7 +20,7 @@ export const setFilter = (filter) => {
 
 export const toggleTodo = (key) => {
   return {
-    type: 'TOGGLE_TODO',
+    type: ActionTypes.TOGGLE_TODO,
     payload: {
       key
     }
@@ -27,7 +29,7 @@ export const toggleTodo = (key) => {
 
 export const deleteTodo = (key) => {
   return {
-    type: 'DELETE_TODO',
+    type: ActionTypes.DELETE_TODO,
     payload: {
       key
     }
@@ -36,6 +38,6 @@ export const deleteTodo = (key) => {
 
 export const clearCompletedTodos = () => {
   return {
-    type: 'CLEAR_COMPLETED_TODOS'
+    type: ActionTypes.CLEAR_COMPLETED_TODOS
   };
 };
