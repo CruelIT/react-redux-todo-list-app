@@ -13,13 +13,16 @@ class ToDoContainer extends Component {
   static propTypes = {
     addTodo: PropTypes.func.isRequired,
     toggleTodo: PropTypes.func.isRequired,
-    setFilter: PropTypes.func.isRequired
+    setFilter: PropTypes.func.isRequired,
+
+    todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+    filter: PropTypes.bool,
+    allCount: PropTypes.number.isRequired,
+    activeCount: PropTypes.number.isRequired
   };
 
   state = {
-    todos: [],
-    inputValue: '',
-    filter: null
+    inputValue: ''
   };
 
   handleInputChange = (event) => {
@@ -36,63 +39,41 @@ class ToDoContainer extends Component {
     let val = this.state.inputValue.trim();
 
     if (val) {
-      let todos = this.state.todos;
-      todos.push({
-        key: this.state.todos.length,
-        value: val,
-        completed: false
-      });
-
       this.props.addTodo(val);
-
-      this.setState({todos, inputValue: ''});
+      this.setState({inputValue: ''});
     }
   };
 
-  handleToggleComplete = (key) => {
-    let todos = this.state.todos;
-    let index = todos.findIndex((todo) => key === todo.key);
-    todos[index].completed = !todos[index].completed;
-
-    this.props.toggleTodo(key);
-
-    this.setState({todos});
-  };
-
   handleDelete = (key) => {
-    let todos = this.state.todos;
+    /*let todos = this.state.todos;
     let index = todos.findIndex((todo) => key === todo.key);
     todos.splice(index, 1);
-    this.setState({todos});
+    this.setState({todos});*/
   };
 
   handleClearCompleted = () => {
-    let todos = this.state.todos.filter((todo) => !todo.completed);
-    this.setState({todos});
-  };
-
-  handleSetFilter = (filter) => {
-    this.props.setFilter(filter);
-
-    this.setState({filter});
+    /*let todos = this.state.todos.filter((todo) => !todo.completed);
+    this.setState({todos});*/
   };
 
   render() {
-    const uncompletedCount = this.state.todos.filter((todo) => !todo.completed).length;
-    const filteredTodos = this.state.todos.filter((todo) => this.state.filter !== null ? (todo.completed === this.state.filter) : true);
-
     return (
       <ToDoLayout
         input={<ToDoInput value={this.state.inputValue} handleChange={this.handleInputChange} handleKeyDown={this.handleInputKeyDown} />}
-        list={<ToDoList todos={filteredTodos} handleToggleComplete={this.handleToggleComplete} handleDelete={this.handleDelete} />}
-        footer={this.state.todos.length > 0 ? <ToDoFooter count={uncompletedCount} showClearButton={uncompletedCount < this.state.todos.length} handleClearCompleted={this.handleClearCompleted} handleSetFilter={this.handleSetFilter} filter={this.state.filter} /> : null}
+        list={<ToDoList todos={this.props.todos} handleToggleComplete={this.props.toggleTodo} handleDelete={this.handleDelete} />}
+        footer={this.props.allCount > 0 ? <ToDoFooter count={this.props.activeCount} showClearButton={this.props.activeCount < this.props.allCount} handleClearCompleted={this.handleClearCompleted} handleSetFilter={this.props.setFilter} filter={this.props.filter} /> : null}
       />
     );
   }
 }
 
 export default connect(
-  undefined,
+  (state) => ({
+    todos: state.todos.filter((todo) => state.filter !== null ? (todo.completed === state.filter) : true),
+    filter: state.filter,
+    allCount: state.todos.length,
+    activeCount: state.todos.filter((todo) => !todo.completed).length
+  }),
   {
     toggleTodo,
     addTodo,
