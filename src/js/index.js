@@ -9,14 +9,14 @@ import App from './app';
 const rootEl = document.getElementById('root');
 
 const render = Component =>
-    ReactDOM.render(
-        <AppContainer>
-            <Component />
-        </AppContainer>,
-        rootEl
-    );
+  ReactDOM.render(
+    <AppContainer>
+      <Component />
+    </AppContainer>,
+    rootEl
+  );
 
 render(App);
-if (module.hot) {
-    module.hot.accept('./app', () => render(App));
+if (__DEV__ && module.hot) {
+  module.hot.accept('./app', () => render(App));
 }
