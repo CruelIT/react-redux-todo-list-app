@@ -1,12 +1,21 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
 import ToDoInput from '../components/ToDoInput';
 import ToDoLayout from '../components/ToDoLayout';
 import ToDoList from '../components/ToDoList';
 import ToDoFooter from '../components/ToDoFooter';
 
+import {toggleTodo, addTodo, setFilter} from '../actions';
+
 const ENTER_KEY = 13;
 
-export default class ToDoContainer extends Component {
+class ToDoContainer extends Component {
+  static propTypes = {
+    addTodo: PropTypes.func.isRequired,
+    toggleTodo: PropTypes.func.isRequired,
+    setFilter: PropTypes.func.isRequired
+  };
+
   state = {
     todos: [],
     inputValue: '',
@@ -33,6 +42,9 @@ export default class ToDoContainer extends Component {
         value: val,
         completed: false
       });
+
+      this.props.addTodo(val);
+
       this.setState({todos, inputValue: ''});
     }
   };
@@ -41,6 +53,9 @@ export default class ToDoContainer extends Component {
     let todos = this.state.todos;
     let index = todos.findIndex((todo) => key === todo.key);
     todos[index].completed = !todos[index].completed;
+
+    this.props.toggleTodo(key);
+
     this.setState({todos});
   };
 
@@ -57,6 +72,8 @@ export default class ToDoContainer extends Component {
   };
 
   handleSetFilter = (filter) => {
+    this.props.setFilter(filter);
+
     this.setState({filter});
   };
 
@@ -73,3 +90,12 @@ export default class ToDoContainer extends Component {
     );
   }
 }
+
+export default connect(
+  undefined,
+  {
+    toggleTodo,
+    addTodo,
+    setFilter
+  }
+)(ToDoContainer);
