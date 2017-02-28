@@ -3,7 +3,11 @@ export default (state = [], action) => {
     case 'ADD_TODO':
       return [
         ...state,
-        Object.assign({}, action.payload, {completed: false})
+        {
+          key: state.length,
+          value: action.payload.text,
+          completed: false
+        }
       ];
     case 'TOGGLE_TODO':
       return state.map((todo) => {

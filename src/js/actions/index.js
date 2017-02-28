@@ -1,10 +1,8 @@
-let nextTodoKey = 0;
 export const addTodo = (text) => {
   return {
     type: 'ADD_TODO',
     payload: {
-      key: nextTodoKey++,
-      value: text
+      text
     }
   }
 };
