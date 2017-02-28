@@ -8,7 +8,7 @@ export default (state = [], action) => {
     case 'TOGGLE_TODO':
       return state.map((todo) => {
         if (todo.key !== action.payload.key) {
-          return state;
+          return todo;
         }
         return Object.assign({}, todo, {completed: !todo.completed});
       });
