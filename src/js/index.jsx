@@ -18,9 +18,9 @@ const render = (Component) => {
     </AppContainer>,
     rootEl
   );
-};
+}
 
 render(App);
-if (module.hot) {
+if (__DEV__ && module.hot) {
   module.hot.accept('./app', () => render(App));
 }
