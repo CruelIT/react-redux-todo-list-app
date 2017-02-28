@@ -21,6 +21,9 @@ const config = {
     publicPath: '/',
     filename: 'assets/js/[name].bundle.js'
   },
+  resolve: {
+    extensions: [".js", ".jsx", ".json"]
+  },
   module: {
     rules: [
       {
@@ -33,6 +36,10 @@ const config = {
         test: /\.jsx?$/,
         use: 'babel-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
