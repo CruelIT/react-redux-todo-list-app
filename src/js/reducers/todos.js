@@ -3,17 +3,14 @@ export default (state = [], action) => {
     case 'ADD_TODO':
       return [
         ...state,
-        {
-          ...action.payload,
-          completed: false
-        }
+        Object.assign({}, action.payload, {completed: false})
       ];
     case 'TOGGLE_TODO':
       return state.map((todo) => {
-        if (todo.key != action.payload.key) {
+        if (todo.key !== action.payload.key) {
           return state;
         }
-        return {...todo, completed: !todo.completed};
+        return Object.assign({}, todo, {completed: !todo.completed});
       });
     default:
       return state;
