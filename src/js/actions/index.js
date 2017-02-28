@@ -4,8 +4,7 @@ export const addTodo = (text) => {
     type: 'ADD_TODO',
     payload: {
       key: nextTodoKey++,
-      value: text,
-      completed: false
+      value: text
     }
   }
 };
